@@ -1,6 +1,5 @@
 class NumArray {
     int[] nums;
-    int left, right;
     public NumArray(int[] nums) {
         this.nums=new int[nums.length];
         this.nums= nums;
