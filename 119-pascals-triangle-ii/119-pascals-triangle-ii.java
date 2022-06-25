@@ -1,12 +1,14 @@
 class Solution {
     public List<Integer> getRow(int rowIndex) {
         List<Integer> result = new ArrayList<Integer>();
-        result.add(1);
-        
-        for(int i = 1; i<=rowIndex; i++){
-            result.add((int)(result.get(i-1)*((long)rowIndex-i+1)/i));
+        for(int row=0; row<=rowIndex; row++){
+            
+            result.add(1);
+            
+            for(int i = row; i>1; i--){
+                result.set(i-1,result.get(i-1)+result.get(i-2));
+            }
         }
-        
         return result;
     }
 }
