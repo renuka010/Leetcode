@@ -1,7 +1,6 @@
 class Solution {
     public int search(int[] nums, int target) {
-        int result=binarysearch(nums,0,nums.length-1,target);
-        return result;
+        return binarysearch(nums,0,nums.length-1,target);
     }
     
     public int binarysearch(int[] nums, int start, int end, int target){
