@@ -15,7 +15,6 @@ class Solution {
         while(fast.next!=null && fast.next.next!=null && fast.next.next.next!=null){
             slow.val=slow.next.val;
             slow.next=slow.next.next;
-            fast.val=fast.next.next.val;
             fast.next=fast.next.next.next;
         }
         if(slow.next!=null)
