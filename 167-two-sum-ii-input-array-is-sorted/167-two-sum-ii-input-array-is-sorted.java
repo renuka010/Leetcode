@@ -2,8 +2,11 @@ class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int start=0, end=numbers.length-1;
         int x=target-numbers[0];
+        //special case
         if(numbers[0]+numbers[1]==target)
             return new int[]{1,2};
+        
+        //binary search to find the max element that can be used to make target
         while(start<end){
             int mid=(start+end)/2;
             if(numbers[mid]<x)
@@ -14,6 +17,8 @@ class Solution {
             if(start==end)
                 break;
         }
+        
+        //finding sum using two pointers
         start=0;
         while(start<end){
             if(numbers[start]+numbers[end]==target)
@@ -23,6 +28,7 @@ class Solution {
             else
                 end--;
         }
+        
         return new int[]{start+1,end+1};
     }
 }
