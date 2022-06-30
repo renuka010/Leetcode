@@ -1,10 +1,10 @@
 class Solution {
     public int minOperations(String[] logs) {
         int x=0;
-        for(int i=0; i<logs.length; i++){
-            if(logs[i].contains("../"))
+        for(String s: logs){
+            if(s.contains("../"))
                 x=Math.max(0,x-1);
-            else if(logs[i].contains("./"))
+            else if(s.contains("./"))
                 continue;
             else
                 x++;
