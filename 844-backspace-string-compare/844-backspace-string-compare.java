@@ -1,9 +1,9 @@
 class Solution {
     public boolean backspaceCompare(String s, String t) {
-        StringBuilder s1=finalString(s);
-        StringBuilder t1=finalString(t);
+        s=finalString(s).toString();
+        t=finalString(t).toString();
         
-        return (s1.toString()).equals(t1.toString());
+        return (s.equals(t));
     }
     public StringBuilder finalString(String s){
         StringBuilder s1=new StringBuilder();
