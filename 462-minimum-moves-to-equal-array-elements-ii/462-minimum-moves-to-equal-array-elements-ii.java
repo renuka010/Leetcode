@@ -2,11 +2,10 @@ class Solution {
     public int minMoves2(int[] nums) {
         Arrays.sort(nums);
         int mid=nums[nums.length/2];
-        int result=0;
+        int result=0, i=0, j=nums.length-1;
         
-        for(int i=0; i<nums.length; i++){
-            result+=Math.max(mid-nums[i],nums[i]-mid);
-        }
+        while(i<j)
+            result+=nums[j--]-nums[i++];
         
         return result;
     }
