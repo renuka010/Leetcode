@@ -1,6 +1,6 @@
 class Solution {
     public boolean isHappy(int n) {
-        ListNode head=new ListNode(n);
+        Set<Integer> s=new HashSet<>();
         while(n!=1){
             int sum=0;
             while(n!=0){
@@ -8,15 +8,11 @@ class Solution {
                 n=n/10;
                 sum+=digit*digit;
             }
+            if(s.contains(sum))
+                return false;
+            else
+                s.add(sum);
             n=sum;
-            ListNode curr=head;
-            while(curr!=null && curr.next!=null){
-                if(curr.next.val==n)
-                    return false;
-                else
-                    curr=curr.next;
-            }
-            curr.next=new ListNode(n);
         }
         return (n==1);
     }
