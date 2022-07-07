@@ -26,7 +26,6 @@ class MinStack {
     }
     
     public void pop() {
-        if(top!=null)
             top=top.next;
     }
     
