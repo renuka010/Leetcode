@@ -5,7 +5,7 @@ class Solution {
         while(i<nums.length){
             sum+=nums[i];
             sum=Math.max(sum,nums[i]);
-            max=Math.max(sum,Math.max(nums[i],max));
+            max=Math.max(sum,max);
             i++;
         }
         return max;
