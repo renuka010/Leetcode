@@ -8,7 +8,6 @@ class MinStack {
     }
     
     stknode top=new stknode();
-    stknode minTop=new stknode();
 
     public MinStack() {
         
