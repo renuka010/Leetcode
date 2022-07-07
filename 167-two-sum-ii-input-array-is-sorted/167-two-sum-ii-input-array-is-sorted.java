@@ -7,7 +7,7 @@ class Solution {
             return new int[]{1,2};
         
         //binary search to find the max element that can be used to make target
-        while(start<end){
+        /*while(start<end){
             int mid=(start+end)/2;
             if(numbers[mid]<x)
                 start=mid+1;
@@ -16,10 +16,9 @@ class Solution {
             
             if(start==end)
                 break;
-        }
+        }*/
         
         //finding sum using two pointers
-        start=0;
         while(start<end){
             if(numbers[start]+numbers[end]==target)
                 break;
