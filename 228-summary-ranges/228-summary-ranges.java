@@ -4,7 +4,6 @@ class Solution {
         int i=0, n=nums.length;
         while(i<n){
             int s=nums[i];
-            int j=i;
             while(i+1<n && nums[i+1]-1==nums[i]){
                 i++;
             }
