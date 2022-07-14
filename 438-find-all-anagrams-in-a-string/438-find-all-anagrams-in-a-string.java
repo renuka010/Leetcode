@@ -2,8 +2,13 @@ class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> r=new ArrayList<>();
         for(int i=0; i<=s.length()-p.length(); i++){
-            if(isAna(s,p,i))
+            if(isAna(s,p,i)){
                 r.add(i);
+                while(i<s.length()-p.length() && s.charAt(i)==s.charAt(i+p.length())){
+                    i++;
+                    r.add(i);
+                }
+            }
         }
         return r;
     }
