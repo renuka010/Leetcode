@@ -4,6 +4,9 @@ class Solution {
             return s;
         StringBuilder res=new StringBuilder();
         for(int i=1; i<s.length(); i++){
+            if(res.length()>=(s.length()-i)*2)
+                break;
+            
             int l=i-1, r=i+1;
             while(l>=0 && r<s.length() && s.charAt(l)==s.charAt(r)){
                 l--;
