@@ -8,13 +8,11 @@ class Solution {
             
             for(int j=0; j<n; j++){
                 
-                if(set1.contains(matrix[i][j]))
+                if(!set1.add(matrix[i][j]))
                     return false;
-                set1.add(matrix[i][j]);
                 
-                if(set2.contains(matrix[j][i]))
+                if(!set2.add(matrix[j][i]))
                     return false;
-                set2.add(matrix[j][i]);
             }
         }
         return true;
