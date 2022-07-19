@@ -6,8 +6,7 @@ class Solution {
                 res=Math.max(res,j-i);
                 i--;
             }
-            while(i>=0 && j>-1 && nums1[i]>nums2[j])
-                j--;
+            j--;
         }
         return res;
     }
