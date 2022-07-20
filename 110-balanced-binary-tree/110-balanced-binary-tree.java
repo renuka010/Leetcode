@@ -21,8 +21,6 @@ class Solution {
     public int balancedCheck(TreeNode root){
         if(root==null)
             return -1;
-        if(root.left==null & root.right==null)
-            return 0;
         int left=balancedCheck(root.left);
         int right=balancedCheck(root.right);
         if(left-right>1 || left-right<-1)
