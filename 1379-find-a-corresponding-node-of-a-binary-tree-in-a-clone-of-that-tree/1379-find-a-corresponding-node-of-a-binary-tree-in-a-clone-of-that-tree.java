@@ -10,17 +10,15 @@
 
 class Solution {
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        Stack<TreeNode> s=new Stack<>();
-        TreeNode root=cloned;
-        while(root!=null || !s.isEmpty()){
-            while(!s.isEmpty() && root==null){
-                root=s.pop().right;
-            }
-            if(root.val==target.val)
-                return root;
-            s.push(root);
-            root=root.left;
-        }
-        return root;
+        if(cloned==null)
+            return null;
+        if(cloned.val==target.val)
+            return cloned;
+        final TreeNode res=getTargetCopy(original,cloned.left,target);
+        if(res==null)
+            return getTargetCopy(original,cloned.right,target);
+        else
+            return res;
+            
     }
 }
