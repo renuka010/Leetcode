@@ -13,16 +13,10 @@ class Solution {
                     sum=total;
                     max=a;
                 }
-                if(total>target){
+                if(total>target)
                     r--;
-                    while(r>=0 && nums[r]==nums[r+1])
-                        r--;
-                }
-                else{
+                else
                     l++;
-                    while(l<n && nums[l]==nums[l-1])
-                        l++;
-                }
             }
         }
         return sum;
