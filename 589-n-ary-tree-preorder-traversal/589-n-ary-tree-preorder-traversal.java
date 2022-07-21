@@ -22,10 +22,9 @@ class Solution {
         List<Integer> res=new ArrayList<>();
         if(root==null)
             return res;
-        Iterator<Node> i= root.children.iterator();
         res.add(root.val);
-        while(i.hasNext()){
-            res.addAll(preorder(i.next()));
+        for(Node n:root.children){
+            res.addAll(preorder(n));
         }
         return res;
     }
