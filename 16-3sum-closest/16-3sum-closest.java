@@ -8,9 +8,10 @@ class Solution {
             int l=i+1, r=n-1;
             while(l<r){
                 int total=nums[i]+nums[l]+nums[r];
-                if(Math.abs(total-target)<max){
+                int a=Math.abs(total-target);
+                if(a<max){
                     sum=total;
-                    max=Math.abs(total-target);
+                    max=a;
                 }
                 if(total>target){
                     r--;
