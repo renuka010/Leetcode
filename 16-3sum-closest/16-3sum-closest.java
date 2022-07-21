@@ -3,8 +3,6 @@ class Solution {
         Arrays.sort(nums);
         int max=Integer.MAX_VALUE, sum=0, n=nums.length;
         for(int i=0; i<n; i++){
-            while(i!=0 && i<n-1 && nums[i]==nums[i-1])
-                i++;
             int l=i+1, r=n-1;
             while(l<r){
                 int total=nums[i]+nums[l]+nums[r];
