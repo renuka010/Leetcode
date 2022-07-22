@@ -6,9 +6,9 @@ class Solution {
             for(int j=i+1; j<nums.length; j++){
                 if(nums[i]<nums[j]){
                     LIS[i]=Math.max(LIS[i], LIS[j]+1);
-                    max=Math.max(max,LIS[i]);
                 }
             }
+            max=Math.max(max,LIS[i]);
         }
         return max+1;
     }
