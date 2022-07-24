@@ -14,14 +14,21 @@ class Solution {
         return count;
     }
     public void visitIsland(char[][] grid,int i,int j){
-        if(i<0 || i>=grid.length || j<0 || j>=grid[0].length ||visited[i][j] ||grid[i][j]=='0')
-            return;
-        else{
-            visited[i][j]=true;
-            visitIsland(grid,i-1,j);
-            visitIsland(grid,i+1,j);
-            visitIsland(grid,i,j-1);
-            visitIsland(grid,i,j+1);
+        visited[i][j]=true;
+        Queue<int[]> q=new LinkedList<>();
+        int[][] x=new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
+        q.offer(new int[]{i,j});
+        while(!q.isEmpty()){
+            int[] n=q.poll();
+            for(int k=0; k<4; k++){
+                int[] a=new int[2];
+                a[0]=n[0]+x[k][0];
+                a[1]=n[1]+x[k][1];
+                if(!(a[0]<0||a[1]<0||a[0]>=grid.length||a[1]>=grid[0].length||visited[a[0]][a[1]]||grid[a[0]][a[1]]=='0')){
+                    visited[a[0]][a[1]]=true;
+                    q.offer(a);
+                }
+            }    
         }
     }
 }
