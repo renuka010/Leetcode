@@ -20,37 +20,30 @@ class Solution {
         return new int[]{left,right};
     }
     public int findleft(int[] nums, int l, int r, int target){
-        int left=-1;
-        if(l==r)
-            return (nums[l]==target)?l:-1;
-        if(l>r)
-            return -1;
-        int mid=l+(r-l)/2;
-        if(nums[mid]==target){
-            left=findleft(nums,l,mid-1,target);
-            if(left==-1)
-                left=mid;
+        while(l<=r){
+            if(l==r)
+                return (nums[l]==target)?l:-1;
+            int mid=(l+r)/2;
+            if(nums[mid]==target)
+                r=mid;
+            else
+                l=mid+1;
         }
-        else{
-            left= findleft(nums,mid+1,r,target);
-        }
-        return left;
+        return -1;
     }
     public int findright(int[] nums, int l, int r, int target){
-        int right=-1;
-        if(l==r)
-            return (nums[l]==target)?l:-1;
-        if(l>r)
-            return -1;
-        int mid=l+(r-l)/2;
-        if(nums[mid]==target){
-            right=findright(nums,mid+1,r,target);
-            if(right==-1)
-                right=mid;
+        while(l<=r){
+            if(l==r)
+                return (nums[l]==target)?l:-1;
+            int mid=(l+r)/2;
+            if(nums[mid]==target){
+                if(l==mid)
+                    return (nums[r]==nums[mid])?r:l;
+                l=mid;
+            }
+            else
+                r=mid-1;
         }
-        else{
-            return findright(nums,l,mid-1,target);
-        }
-        return right;
+        return -1;
     }
 }
