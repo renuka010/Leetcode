@@ -7,8 +7,7 @@ class Solution {
                 end=nums[i]+duration-1;
             }
             else{
-                res-=Math.abs(nums[i]-end)+1;
-                res+=duration;
+                res-=Math.abs(nums[i]-end)+1-duration;
                 end=nums[i]+duration-1;
             }
         }
