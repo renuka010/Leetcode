@@ -8,23 +8,20 @@ class Solution {
             return dividend;
         else if(divisor==-1)
             return 0-dividend;
-        if(dividend==min){
-            if(divisor==min)
-                return 1;
-            else if(divisor<0){
-                divisor=0-divisor;
-                isNeg=!isNeg;
-            }
-            dividend+=divisor;
-            dividend=0-dividend;
-            count++;
-            isNeg=!isNeg;
-        }
         else if(divisor==min)
-            return 0;
-        else if(dividend<0 && divisor<0){
-            dividend=0-dividend;
-            divisor=0-divisor;
+            return (dividend==min)?1:0;
+        
+        if(dividend<0 && divisor<0){
+            if(dividend==min){
+                divisor=0-divisor;
+                count++;
+                dividend+=divisor;
+                dividend=0-dividend;
+            }
+            else{
+                dividend=0-dividend;
+                divisor=0-divisor;
+            }
         }
         else if(divisor<0){
             isNeg=true;
@@ -32,7 +29,13 @@ class Solution {
         }
         else if(dividend<0){
             isNeg=true;
-            dividend=0-dividend;
+            if(dividend==min){
+                count++;
+                dividend+=divisor;
+                dividend=0-dividend;
+            }
+            else
+                dividend=0-dividend;
         }
         while(dividend>=divisor){
             dividend-=divisor;
