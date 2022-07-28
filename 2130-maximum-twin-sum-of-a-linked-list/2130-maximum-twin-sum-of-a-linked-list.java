@@ -10,20 +10,26 @@
  */
 class Solution {
     public int pairSum(ListNode head) {
-        Stack<Integer> s=new Stack<>();
         ListNode slow=head;
         ListNode fast=head;
         int max=head.val;
         while(fast!=null){
-            s.push(slow.val);
             slow=slow.next;
             fast=fast.next.next;
         }
+        ListNode prev=null;
         while(slow!=null){
-            int sum=slow.val+s.pop();
+            ListNode next=slow.next;
+            slow.next=prev;
+            prev=slow;
+            slow=next;
+        }
+        while(prev!=null){
+            int sum=prev.val+head.val;
             if(sum>max)
                 max=sum;
-            slow=slow.next;
+            prev=prev.next;
+            head=head.next;
         }
         return max;
     }
