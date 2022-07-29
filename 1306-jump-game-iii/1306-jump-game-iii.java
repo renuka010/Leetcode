@@ -11,7 +11,6 @@ class Solution {
             visited[start]=true;
             ans= canU(visited,arr,start-arr[start])||canU(visited,arr,start+arr[start]);
             visited[start]=false;
-            return ans;
         }
         return ans;
     }
