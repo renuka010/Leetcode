@@ -1,14 +1,13 @@
 class Solution {
     public int jump(int[] nums) {
-        int[] jumps=new int[nums.length];
-        jumps[0]=0;
+        int jumps=0, farjump=0, last=0;
         for(int i=0; i<nums.length-1;i++){
-            int j=i+1;
-            while(j<nums.length && j<=i+nums[i]){
-                jumps[j]=(jumps[j]!=0 && jumps[j]<jumps[i]+1)?jumps[j]:1+jumps[i];
-                j++;
+            farjump=(farjump>i+nums[i])?farjump:nums[i]+i;
+            if(i==last){
+                jumps++;
+                last=farjump;
             }
         }
-        return jumps[nums.length-1];
+        return jumps;
     }
 }
