@@ -20,7 +20,7 @@ class Solution {
             for(i=0; i<s.length(); i++)
                 arr2[s.charAt(i)-'a']++;
             for(i=0; i<26; i++){
-                if(arr1[i]!=0 && arr1[i]>arr2[i]){
+                if(arr1[i]>arr2[i]){
                     issubset=false;
                     break;
                 }
