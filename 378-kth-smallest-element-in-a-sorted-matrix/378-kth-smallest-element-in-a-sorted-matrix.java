@@ -1,27 +1,23 @@
-class Solution {
+class Solution { // 18 ms, faster than 32.44%
     public int kthSmallest(int[][] matrix, int k) {
-        Queue<Tuple> pq=new PriorityQueue<>();
-        for(int i=0; i<matrix.length ;i++)
-            pq.offer(new Tuple(0,i,matrix[0][i]));
-        for(int i=k; k>1; k--){
-            Tuple t=pq.poll();
-            if(t.x==matrix.length-1)
-                continue;
-            pq.offer(new Tuple(t.x+1,t.y,matrix[t.x+1][t.y]));
+       int n=matrix.length, l=matrix[0][0], r=matrix[n-1][n-1], res=-1;
+        while(l<=r){
+            int mid=(l+r)/2;
+            if(numslessorequal(mid,matrix,n)>=k){
+                res=mid;
+                r=mid-1;
+            }
+            else
+                l=mid+1;
         }
-        return pq.poll().val;
+        return res;
     }
-}
-
-class Tuple implements Comparable<Tuple>{
-    int x, y, val;
-    public Tuple(int i,int j, int val){
-        this.x=i;
-        this.y=j;
-        this.val=val;
-    }
-    @Override
-    public int compareTo(Tuple that){
-        return this.val-that.val;
+    public int numslessorequal(int x, int[][] matrix, int n){
+        int count=0;
+        for(int i=0, c=n-1; i<n; i++){
+            while(c>=0 && matrix[i][c]>x)c--;
+            count+=(c+1);
+        }
+        return count;
     }
 }
