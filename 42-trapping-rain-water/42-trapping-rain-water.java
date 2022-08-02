@@ -1,7 +1,7 @@
 class Solution {
     public int trap(int[] h) {
         int[] minmax=new int[h.length];
-        int max=0, sum=0, res=0;
+        int max=0, sum=0;
         for(int i=0; i<h.length; i++){
             minmax[i]=max;
             if(h[i]>max)
@@ -14,9 +14,7 @@ class Solution {
                 max=h[i];
             if(minmax[i]>0)
                 sum+=minmax[i];
-            else
-                res=Math.max(sum,res);
         }
-        return Math.max(sum,res);
+        return sum;
     }
 }
