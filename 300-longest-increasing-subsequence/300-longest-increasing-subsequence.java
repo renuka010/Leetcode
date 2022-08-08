@@ -10,5 +10,6 @@ class Solution {
             max=Math.max(max,LIS[i]);
         }
         return max+1;
+        
     }
 }
