@@ -10,31 +10,22 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        Stack<ListNode> s=new Stack<>();
-        ArrayDeque<ListNode> dq=new ArrayDeque<>();
-        for(int i=0; i<lists.length; i++){
-            ListNode head=lists[i];
+        Queue<ListNode> q=new PriorityQueue<>((a,b)->a.val-b.val);
+        for(ListNode head:lists){
             while(head!=null){
-                while(!dq.isEmpty() && dq.peekLast().val>head.val){
-                    s.push(dq.pollLast());
-                }
-                while(!s.isEmpty() && s.peek().val<head.val){
-                    dq.offer(s.pop());
-                }
-                dq.offer(head);
+                q.offer(head);
                 head=head.next;
             }
         }
-        while(!s.isEmpty()){
-            dq.offer(s.pop());
+        if(q.isEmpty())
+            return null;
+        ListNode l=q.poll();
+        ListNode head=l;
+        while(!q.isEmpty()){
+            l.next=q.poll();
+            l=l.next;
         }
-        
-        ListNode head=new ListNode();
-        ListNode curr=head;
-        while(!dq.isEmpty()){
-            curr.next=dq.poll();
-            curr=curr.next;
-        }
-        return head.next;
+        l.next=null;
+        return head;
     }
 }
