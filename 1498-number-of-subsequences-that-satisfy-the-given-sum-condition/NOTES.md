@@ -1,0 +1,1 @@
+got struck here as power of 2 can also b longer so hv to mod that
