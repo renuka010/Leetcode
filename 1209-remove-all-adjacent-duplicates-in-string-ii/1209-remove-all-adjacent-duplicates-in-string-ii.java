@@ -9,29 +9,24 @@ class Solution {
     }
     public String removeDuplicates(String s1, int k) {
         Stack<Pairs> s=new Stack<>();
-        int count=0;
         for(int i=0; i<s1.length(); i++){
             char c=s1.charAt(i);
             if(!s.isEmpty() && s.peek().c==c){
                 s.push(new Pairs(c,s.peek().n+1));
-                count++;
                 if(s.peek().n==k){
                     for(int j=0; j<k; j++){
                         s.pop();
-                        count--;
                     }
                 }
             }
             else{
                 s.push(new Pairs(c,1));
-                count++;
             }
         }
-        char[] c=new char[count];
-        count-=1;
+        StringBuilder res=new StringBuilder();
         while(!s.isEmpty()){
-            c[count--]=s.pop().c;
+            res.append(s.pop().c);
         }
-        return new String(c);
+        return res.reverse().toString();
     }
 }
