@@ -1,34 +1,28 @@
 class Solution {
     boolean[][] visited;
+    int l1,l2;
     public int numIslands(char[][] grid) {
-        visited=new boolean[grid.length][grid[0].length];
+        l1=grid.length;
+        l2=grid[0].length;
+        visited=new boolean[l1][l2];
         int count=0;
-        for(int i=0; i<grid.length; i++){
-            for(int j=0; j<grid[0].length; j++){
+        for(int i=0; i<l1; i++){
+            for(int j=0; j<l2; j++){
                 if(grid[i][j]=='1' && !visited[i][j]){
                     count++;
-                    visitIsland(grid,i,j);
+                    markIsland(grid,i,j);
                 }
             }
         }
         return count;
     }
-    public void visitIsland(char[][] grid,int i,int j){
-        visited[i][j]=true;
-        Queue<int[]> q=new LinkedList<>();
-        int[][] x=new int[][]{{0,1},{0,-1},{1,0},{-1,0}};
-        q.offer(new int[]{i,j});
-        while(!q.isEmpty()){
-            int[] n=q.poll();
-            for(int k=0; k<4; k++){
-                int[] a=new int[2];
-                a[0]=n[0]+x[k][0];
-                a[1]=n[1]+x[k][1];
-                if(!(a[0]<0||a[1]<0||a[0]>=grid.length||a[1]>=grid[0].length||visited[a[0]][a[1]]||grid[a[0]][a[1]]=='0')){
-                    visited[a[0]][a[1]]=true;
-                    q.offer(a);
-                }
-            }    
-        }
+    public void markIsland(char[][] grid, int x, int y){
+        if(x<0 || x>=l1 || y<0 || y>=l2 || grid[x][y]=='0' || visited[x][y])
+            return;
+        visited[x][y]=true;
+        markIsland(grid,x+1,y);
+        markIsland(grid,x,y+1);
+        markIsland(grid,x-1,y);
+        markIsland(grid,x,y-1);
     }
 }
