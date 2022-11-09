@@ -2,13 +2,12 @@ class Solution {
     public String minRemoveToMakeValid(String s) {
         StringBuilder res=new StringBuilder(s);
         int i=0, open=0;;
-        Deque<Integer> q=new ArrayDeque<>();
+        Stack<Integer> stk=new Stack<>();
         
         while(i<res.length()){
             if(res.charAt(i)==')'){
                 if(open>0){
                     open--;
-                    q.poll();
                     i++;
                 }
                 else
@@ -16,15 +15,16 @@ class Solution {
             }
             else if(res.charAt(i)=='('){
                 open++;
-                q.offer(i);
+                stk.push(i);
                 i++;
             }
             else
                 i++;
         }
-        while(!q.isEmpty()){
-            int x=q.pollLast();
+        while(open>0){
+            int x=stk.pop();
             res.delete(x,x+1);
+            open--;
         }
         return res.toString();
     }
