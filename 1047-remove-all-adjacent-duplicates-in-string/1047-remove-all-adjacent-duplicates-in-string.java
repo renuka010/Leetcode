@@ -1,17 +1,12 @@
 class Solution {
     public String removeDuplicates(String s) {
-        StringBuilder r=new StringBuilder(s);
-        int i=0;
-        while(i<r.length()-1){
-            if(r.charAt(i)==r.charAt(i+1)){
-                r.deleteCharAt(i);
-                r.deleteCharAt(i);
-                if(i!=0)
-                    i--;
-                continue;
-            }
-            i++;
+        StringBuilder res=new StringBuilder();
+        for(int i=0; i<s.length(); i++){
+            if(res.length()!=0 && s.charAt(i)==res.charAt(res.length()-1))
+                res.delete(res.length()-1,res.length());
+            else
+                res.append(s.charAt(i));
         }
-        return r.toString();
+        return res.toString();
     }
 }
