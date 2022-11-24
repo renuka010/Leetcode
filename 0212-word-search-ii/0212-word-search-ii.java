@@ -1,7 +1,7 @@
 class Trie{
     
     Trie[] next=new Trie[26];
-    boolean end;
+    String end;
     
     Trie() {}
     
@@ -11,7 +11,7 @@ class Trie{
             next[c-'a']=new Trie();
         i++;
         if(i==s.length())
-            next[c-'a'].end=true;
+            next[c-'a'].end=s;
         else
             next[c-'a'].add(i,s);
     }
@@ -31,7 +31,7 @@ class Solution {
         
         for(int i=0; i<board.length; i++){
             for(int j=0; j<board[0].length; j++){
-                check(t,i,j,board,visit,set,new StringBuilder());
+                check(t,i,j,board,visit,set);
             }
         }
         
@@ -40,23 +40,21 @@ class Solution {
         return res;
     }
     
-    public void check(Trie t,int i, int j, char[][] board, boolean[][] visited, Set<String> set, StringBuilder s){
+    public void check(Trie t,int i, int j, char[][] board, boolean[][] visited, Set<String> set){
         
         if(i<0||j<0||i>=board.length||j>=board[0].length||visited[i][j]||t.next[board[i][j]-'a']==null)
             return;
         
         visited[i][j]=true;
         t=t.next[board[i][j]-'a'];
-        s.append(board[i][j]);
-        if(t.end)
-            set.add(s.toString());
+        if(t.end!=null)
+            set.add(t.end);
         
-        check(t,i+1,j,board,visited,set,s);
-        check(t,i,j+1,board,visited,set,s);
-        check(t,i-1,j,board,visited,set,s);
-        check(t,i,j-1,board,visited,set,s);
+        check(t,i+1,j,board,visited,set);
+        check(t,i,j+1,board,visited,set);
+        check(t,i-1,j,board,visited,set);
+        check(t,i,j-1,board,visited,set);
         
         visited[i][j]=false;
-        s.deleteCharAt(s.length()-1);
     }
 }
