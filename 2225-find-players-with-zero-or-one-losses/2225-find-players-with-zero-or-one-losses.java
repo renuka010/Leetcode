@@ -1,36 +1,23 @@
 class Solution {
     public List<List<Integer>> findWinners(int[][] matches) {
-        Set<Integer> set=new HashSet<>();
-        Map<Integer, Integer> map=new HashMap<>();
-        List<List<Integer>> res=new ArrayList<>();
-        List<Integer> noloss=new ArrayList<>();
-        List<Integer> oneloss=new ArrayList<>();
+        HashMap<Integer,Integer> map=new HashMap<>();
         for(int i=0; i<matches.length; i++){
-            int lost=matches[i][1];
-            if(map.containsKey(lost)){
-                map.put(lost, map.get(lost) + 1);
-            }
-            else
-                map.put(lost,1);
+            map.put(matches[i][1],map.getOrDefault(matches[i][1],0)+1);
         }
-        int val;
+        
+        List<Integer> list=new ArrayList<Integer>();
+        Set<Integer> set=new HashSet<Integer>();
+        
         for(int i=0; i<matches.length; i++){
-            for(int j=0; j<2; j++){
-                if(set.add(matches[i][j])){
-                    if(map.containsKey(matches[i][j])){
-                        val=map.get(matches[i][j]);
-                        if(val==1)
-                            oneloss.add(matches[i][j]);
-                    }
-                    else
-                        noloss.add(matches[i][j]);
-                }
-            }
+            if(!map.containsKey(matches[i][0]))
+                set.add(matches[i][0]);
+            if(map.get(matches[i][1])==1)
+                list.add(matches[i][1]);
         }
-        Collections.sort(noloss);
-        res.add(noloss);
-        Collections.sort(oneloss);
-        res.add(oneloss);
-        return res;
+        List<Integer> lst=new ArrayList<Integer>();
+        lst.addAll(set);
+        Collections.sort(lst);
+        Collections.sort(list);
+        return new ArrayList<List<Integer>>(Arrays.asList(lst,list));
     }
 }
