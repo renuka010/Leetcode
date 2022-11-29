@@ -25,7 +25,11 @@ class RandomizedCollection {
             return false;
         Set<Integer> set1=map.get(val);
         
-        int index=set1.iterator().next();
+        int index=0;
+        for(Integer x:set1){
+            index=x;
+            break;
+        }
         
         list.set(index,list.get(n-1));
         Set<Integer> set2=map.get(list.get(n-1));
