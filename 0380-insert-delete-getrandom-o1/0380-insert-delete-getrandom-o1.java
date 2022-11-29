@@ -8,17 +8,11 @@ class RandomizedSet {
     }
     
     public boolean insert(int val) {
-        if(map.contains(val))
-            return false;
-        map.add(val);
-        return true;
+        return map.add(val);
     }
     
     public boolean remove(int val) {
-        if(!map.contains(val))
-            return false;
-        map.remove(val);
-        return true;
+        return map.remove(val);
     }
     
     public int getRandom() {
