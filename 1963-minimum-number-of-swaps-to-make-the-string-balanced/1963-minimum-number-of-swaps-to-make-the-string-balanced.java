@@ -1,31 +1,36 @@
 class Solution {
     public int minSwaps(String s) {
-        int l=0, r=s.length()-1;
-        int lcount=0, rcount=0, swap=0;
+        int lo=0,lc=0,ro=0,rc=0;
+        int l=0, r=s.length()-1, swap=0;
         while(l<r){
-            while(lcount!=-1 && l<r){
-                if(s.charAt(l)==']')
-                    lcount--;
-                else
-                    lcount++;
-                if(lcount!=-1)
-                    l++;
-            }
-            while(rcount!=-1 && l<r){
-                if(s.charAt(r)=='[')
-                    rcount--;
-                else
-                    rcount++;
-                if(rcount!=-1)
-                    r--;
-            }
-            if(l<r){
-                rcount=1;
-                lcount=1;
+            if(s.charAt(l)=='[')
+                lo++;
+            else
+                lc++;
+            if(s.charAt(r)=='[')
+                ro++;
+            else
+                rc++;
+            if(lo<lc && ro>rc){
                 swap++;
+                lc--;
+                lo++;
+                ro--;
+                rc++;
                 l++;
                 r--;
+                continue;
             }
+            if(lo<lc){
+                lc--;
+            }
+            else
+                l++;
+            if(ro>rc){
+                ro--;
+            }
+            else
+                r--;
         }
         return swap;
     }
