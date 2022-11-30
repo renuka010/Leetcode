@@ -5,9 +5,11 @@ class Solution {
         for(int i=0; i<p.length(); i++){
             map[p.charAt(i)-'a']++;
         }
+        
         int len=p.length();
         int win=0, j=0, i=0;
         int[] smap=new int[26];
+        
         while(i<s.length()){
             if(map[s.charAt(i)-'a']==0){
                 Arrays.fill(smap,0);
@@ -32,9 +34,6 @@ class Solution {
                 j++;
             }
             i++;
-        }
-        if(win==len){
-            res.add(j);
         }
         return res;
     }
