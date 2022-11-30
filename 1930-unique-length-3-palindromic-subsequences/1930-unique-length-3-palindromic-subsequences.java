@@ -1,22 +1,33 @@
+class Tuple{
+    int x,y;
+    Tuple(int a, int b){
+        x=a;
+        y=b;
+    }
+}
 class Solution {
     public int countPalindromicSubsequence(String s) {
         int n=s.length();
-        Set<Integer> left=new HashSet<>();
+        int[] left=new int[26];
         int[] right=new int[26];
-        left.add(s.charAt(0)-'a');
-        for(int i=2; i<s.length(); i++){
-            right[s.charAt(i)-'a']++;
+        Arrays.fill(left,-1);
+        int j;
+        for(int i=0; i<n; i++){
+            j=s.charAt(i)-'a';
+            if(left[j]==-1)
+                left[j]=i;
+            right[j]=i;
         }
-        
-        Set<String> set=new HashSet<>();
-        for(int i=1; i<s.length()-1; i++){
-            for(int j=0; j<26; j++){
-                if(right[j]!=0 && left.contains(j))
-                    set.add(s.charAt(i)+Integer.toString(j));
+        int count=0;
+        for(int i=0; i<26; i++){
+            boolean[] map=new boolean[26];
+            for(j=left[i]+1; j<right[i]; j++){
+                if(map[s.charAt(j)-'a'])
+                    continue;
+                map[s.charAt(j)-'a']=true;
+                count++;
             }
-            left.add(s.charAt(i)-'a');
-            right[s.charAt(i+1)-'a']--;
         }
-        return set.size();
+        return count;
     }
 }
